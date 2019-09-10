@@ -1,0 +1,24 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<p style="font-size: 2rem; color:orange" id="status"></p>
+@section Scripts{ 
+<script>
+    $.ajax({
+        url: "http://localhost:53268/hc",
+        method: "GET",
+        success: function (data) {
+            $("#status").html(data);
+            $("#status").css("color", "green");
+            console.log(data);
+        },
+        error: function (data) {
+            $("#status").html(data.responseText);
+            $("#status").css("color", "red");
+        }
+    })
+</script>
+}
